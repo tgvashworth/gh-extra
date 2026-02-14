@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gh-extra Settings</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+      color: #1f2328;
+      line-height: 1.5;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: #656d76;
+      margin-bottom: 32px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .help {
+      color: #656d76;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d1d9e0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #0969da;
+      box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+    }
+    .variables {
+      margin-top: 12px;
+      padding: 12px;
+      background: #f6f8fa;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .variables code {
+      background: #eff2f5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .variables ul {
+      list-style: none;
+      margin-top: 8px;
+    }
+    .variables li {
+      margin-bottom: 4px;
+    }
+    .actions {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    button {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: #1f883d;
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #1a7f37;
+    }
+    #status {
+      color: #1a7f37;
+      font-size: 14px;
+    }
+    .preview {
+      margin-top: 24px;
+      padding: 12px;
+      background: #f6f8fa;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .preview code {
+      font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+      color: #0550ae;
+    }
+    .keyboard-hint {
+      margin-top: 32px;
+      padding: 16px;
+      background: #ddf4ff;
+      border: 1px solid #54aeff;
+      border-radius: 6px;
+      font-size: 13px;
+    }
+    .keyboard-hint a {
+      color: #0969da;
+    }
+  </style>
+</head>
+<body>
+  <h1>gh-extra</h1>
+  <p class="subtitle">Copy branch names from GitHub issues.</p>
+
+  <label for="branchFormat">Branch format</label>
+  <p class="help">The template used to generate branch names.</p>
+  <input type="text" id="branchFormat" placeholder="{id}-{title}">
+
+  <div class="variables">
+    <strong>Available variables:</strong>
+    <ul>
+      <li><code>{id}</code> &mdash; issue number</li>
+      <li><code>{title}</code> &mdash; issue title (slugified)</li>
+      <li><code>{repo}</code> &mdash; repository name</li>
+      <li><code>{owner}</code> &mdash; repository owner</li>
+    </ul>
+  </div>
+
+  <div class="preview" id="preview"></div>
+
+  <div class="actions">
+    <button class="btn-primary" id="save">Save</button>
+    <span id="status"></span>
+  </div>
+
+  <div class="keyboard-hint">
+    <strong>Keyboard shortcut:</strong> Configure your shortcut at
+    <a href="chrome://extensions/shortcuts" id="shortcuts-link">chrome://extensions/shortcuts</a>.
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
