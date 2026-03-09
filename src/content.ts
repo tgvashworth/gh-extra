@@ -38,12 +38,12 @@ async function handleCopyBranch(): Promise<{ success: boolean }> {
     return { success: false };
   }
 
-  showToast(`Copied: ${branchName}`);
-
   // Move to "In Progress" (non-blocking — don't fail the whole operation)
   const statusResult = await moveToInProgress();
   if (!statusResult.ok) {
-    showToast(statusResult.reason, "warning");
+    showToast(`Copied: ${branchName} (${statusResult.reason})`);
+  } else {
+    showToast(`Copied: ${branchName}`);
   }
 
   return { success: true };
